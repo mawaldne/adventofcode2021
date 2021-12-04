@@ -6,7 +6,7 @@
 from typing import Tuple
 import fileinput
 
-def convert(line: str) -> Tuple[str, int]:
+def convert(line: str) -> tuple[str, int]:
     vals = line.split()
     return (vals[0], int(vals[1]))
 
