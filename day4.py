@@ -32,13 +32,13 @@ def transpose(board):
 def bingo(sequence, boards):
     drawn = set()
 
-    for n in sequence:
-        drawn.add(n)
+    for last_picked in sequence:
+        drawn.add(last_picked)
 
         for board in boards:
             for row in (board + transpose(board)):
                 if len(set(drawn) & set(row)) == 5:
-                    return (n, drawn, board)
+                    return (last_picked, drawn, board)
 
 last_picked, drawn, board = bingo(draws, boards)
 total_unpicked_numbers = sum([sum(set(row) - drawn) for row in board])
