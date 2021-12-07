@@ -1,14 +1,12 @@
 import fileinput
 from collections import defaultdict
 
-lanternfish = list(map(int, fileinput.input()[0].split(",")))
+line = fileinput.input().readline()
+lanternfish = list(map(int, line.split(",")))
 
 fishtimerhash = defaultdict(int)
-
 for f in lanternfish:
     fishtimerhash[f] += 1
-
-print(fishtimerhash)
 
 for _ in range(256):
     newtimerhash = defaultdict(int)
