@@ -1,4 +1,5 @@
 import fileinput
+from collections import defaultdict
 
 def convert(line):
     [x1,y1,x2,y2] = list(map(int, line.replace(" -> ", ",").split(",")))
@@ -8,13 +9,8 @@ coor_ranges = list(map(convert, fileinput.input()))
 
 coors = []
 
-xmax = float('-inf')
-ymax = float('-inf')
-
 for coor_range in coor_ranges:
     (x1,y1),(x2,y2) = coor_range
-    xmax = max(xmax, x1, x2)
-    ymax = max(ymax, y1, y2)
 
     if y1 == y2:
         if x1 < x2:
@@ -30,10 +26,10 @@ for coor_range in coor_ranges:
     coors += c
     c = []
 
-vents = [[0] * (xmax + 1) for _ in range(ymax + 1)]
+vents = defaultdict(int)
 
-for x,y in coors:
-    vents[y][x] += 1
+for coor in coors:
+    vents[coor] += 1
 
-print(len([val for row in vents for val in row if val > 1]))
+print(len([val for val in vents.values() if val > 1]))
 
