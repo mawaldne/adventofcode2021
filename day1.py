@@ -1,4 +1,5 @@
 nums = []
+
 with open('day1.txt', 'r') as l:
     lines = l.readlines()
     for line in lines:
